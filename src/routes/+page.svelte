@@ -1,10 +1,13 @@
 <script>
-  import Navbar from "$lib/Navbar/Navbar.svelte";
+  import Description from "./partials/Description.svelte";
+  import GettingStarted from "./partials/GettingStarted.svelte";
 </script>
 
-<div class="homepage">
-  <div class="c-hero__container">
-    <h1 class="c-hero__title">Welcome to ZIG - Tiny Book</h1>
-    <Navbar />
-  </div>
+<div class="homepage u-container">
+  <Description />
+  <GettingStarted />
 </div>
+
+<style lang="scss">
+  @import "./page.scss";
+</style>
