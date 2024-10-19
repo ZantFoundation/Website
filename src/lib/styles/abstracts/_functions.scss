@@ -1,0 +1,121 @@
+/* stylelint-disable scss/operator-no-newline-after */
+@use 'sass:math';
+@use 'sass:map';
+@use 'variables' as v;
+
+@function strip-unit($value) {
+    @return math.div($value, $value * 0 + 1);
+}
+
+@function rem($pxValue) {
+    @return math.div(strip-unit($pxValue), 16) * 1rem;
+}
+
+@function minrem($pxValue, $min: $pxValue) {
+    @return min(rem($pxValue), strip-unit($min) * 1px);
+}
+
+@function maxrem($pxValue, $max: $pxValue) {
+    @return max(rem($pxValue), strip-unit($max) * 1px);
+}
+
+@function em($pixels, $context: $html-font-size) {
+    @if unitless($pixels) {
+        $pixels: $pixels * 1px;
+    }
+
+    @if unitless($context) {
+        $context: $context * 1px;
+    }
+
+    @return math.div($pixels, $context) * 1em;
+}
+
+@function vw($px-vw, $base-vw: 1440px) {
+    @return math.div(strip-unit($px-vw) * 100vw, strip-unit($base-vw));
+}
+
+@function calc-col($config: $config) {
+    $container: map.get(
+        $map: $config,
+        $key: 'container',
+    );
+    $cols: map.get(
+        $map: $config,
+        $key: 'cols',
+    );
+    $gutter: map.get(
+        $map: $config,
+        $key: 'gutter',
+    );
+    $pixel-col: math.div($container - ($gutter * $cols + $gutter), $cols);
+
+    @return math.div($pixel-col, $container) * 100;
+}
+
+@function calc-gutter($config: $config) {
+    $container: map.get(
+        $map: $config,
+        $key: 'container',
+    );
+    $gutter: map.get(
+        $map: $config,
+        $key: 'gutter',
+    );
+
+    @return math.div($gutter, $container) * 100;
+}
+
+@function sass-grid($config: $grid-config) {
+    $cols: map.get(
+        $map: $config,
+        $key: 'cols',
+    );
+    $gutter: map.get(
+        $map: $config,
+        $key: 'gutter',
+    );
+    $col: calc-col($config);
+    $gutter: calc-gutter($config);
+    $svg: "data:image/svg+xml,%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 100% 100%' style='enable-background:new 0 0 100% 100%;' xml:space='preserve'";
+
+    @for $c from 0 to $cols {
+        $svg: $svg +
+            "%3E%3Crect x='#{$gutter + (($gutter + $col) * $c)}%' width='#{$col}%' height='101%' style='fill:hsla(78, 100%, 50%, 0.2); stroke:hsla(78, 100%, 50%, 1); stroke-width:1px;'/%3E%0A";
+    }
+
+    @return url('#{$svg}%3C/svg%3E') no-repeat scroll;
+
+}
+
+
+/**
+ * vw calc based on css var.
+*/
+@function v($px-vw, $base-vw: var(--context-vw, 375)) {
+    @return calc($px-vw * 100vw / $base-vw);
+}
+
+@function minv($px-vw, $min: $px-vw * 1px, $base-vw: var(--context-vw, 375)) {
+    @return min(calc($px-vw * 100vw / $base-vw), strip-unit($min) * 1px);
+}
+
+@function maxv($px-vw, $max: $px-vw * 1px, $base-vw: var(--context-vw, 375)) {
+    @return max(calc($px-vw * 100vw / $base-vw), strip-unit($max) * 1px);
+}
+
+/**
+ * vh calc based on css var.
+*/
+@function h($px-vh, $base-vh: var(--context-vh, 375)) {
+    @return calc($px-vh * 100vh / $base-vh);
+}
+
+@function minh($px-vh, $min: $px-vh * 1px, $base-vh: var(--context-vh, 375)) {
+    @return min(calc($px-vh * 100vh / $base-vh), strip-unit($min) * 1px);
+}
+
+@function maxh($px-vh, $max: $px-vh * 1px, $base-vh: var(--context-vh, 375)) {
+    @return max(calc($px-vh * 100vh / $base-vh), strip-unit($max) * 1px);
+}
+
