@@ -1,0 +1,263 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The ZAnt Project</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+  
+  :root {
+      --primary-color: #FFA500; /* Light orange */
+      --accent-color: #FFFFFF; /* White for accents */
+      --bg-color: #FFFFFF; /* White background */
+      --text-color: #333333; /* Dark gray for text */
+      --header-color: #F0F0F0; /* Light gray for headers and strong text in dark mode */
+    }
+  
+    /* Dark mode settings */
+    body.dark-mode {
+      --bg-color: #000000; /* Black for dark mode */
+      --text-color: #F0F0F0; /* Lighter gray for text */
+      --primary-color: #FFA500; /* Light orange remains the same */
+    }
+  
+    /* Ensure titles and strong tags use header color in dark mode */
+    body.dark-mode h1, body.dark-mode h2, body.dark-mode h3,
+    body.dark-mode h4, body.dark-mode h5, body.dark-mode h6,
+    body.dark-mode strong {
+      color: var(--header-color) !important;
+    }
+  
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        font-family: monospace;
+        transition: background-color 0.3s, color 0.3s;
+        margin: 0; /* Reduced margin */
+        padding: 0 1rem; /* Padding for wider body layout */
+      }
+  
+      header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Center vertically */
+        align-items: center; /* Center horizontally */
+        padding: 8rem 2rem; /* Increased padding for taller hero section */
+        width: 100%; /* Set width to 100% */
+        height: 95vh; /* Full height of the viewport */
+        background-color: var(--bg-color);
+        text-align: center; /* Center text for better mobile experience */
+      }
+      header .title {
+        font-size: 2.5rem; /* Slightly smaller for better fit */
+      }
+      header .subtitle {
+        color: #A8B2C8;
+        margin-top: 1rem;
+        font-size: 1.2rem; /* Adjusted for mobile */
+      }
+      .dark-toggle {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: transparent;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--primary-color);
+        cursor: pointer;
+      }
+      .content-section {
+        max-width: 85%;
+        margin: auto;
+        padding: 1.5rem; /* Reduced padding for mobile */
+        text-align: left;
+        color: var(--text-color);
+      }
+      hr {
+        border: 1px solid var(--primary-color);
+        margin: 1rem 0; /* Reduced margin for horizontal separators */
+        width: 85%; /* Set width to 80% */
+        margin-left: auto; /* Center the separator */
+        margin-right: auto; /* Center the separator */
+      }
+      .button-bar {
+        display: flex;
+        flex-wrap: wrap; /* Wrap buttons on smaller screens */
+        justify-content: center;
+        gap: 0.5rem;
+        padding-top: 1rem;
+      }
+      .logo{
+        width: auto;
+        height: 40px;
+        vertical-align: bottom;
+        margin-right: 8px;
+      }
+      .button {
+  
+        background-color: var(--primary-color);
+        color: var(--bg-color);
+        border: none;
+        flex: 1 1 auto; /* Allow buttons to grow */
+      }
+      
+      .button:hover {
+        background-color: #FF8C00; /* Darker orange on hover */
+      }
+      .faq-item h3 {
+        margin-top: 1.5rem;
+        color: var(--primary-color);
+        cursor: pointer;
+      }
+      .faq-answer {
+        display: none;
+        color: var(--text-color);
+      }
+      a {
+        color: var(--primary-color);
+      }
+      .faq-icon {
+        margin-right: 0.5rem; /* Spacing for icons */
+      }
+  
+      /* Responsive Styles */
+      @media (max-width: 768px) {
+        header .title {
+          font-size: 2rem; /* Smaller title on mobile */
+        }
+        header .subtitle {
+          font-size: 1rem; /* Smaller subtitle on mobile */
+        }
+        .content-section {
+          padding: 1rem; /* Reduced padding for mobile */
+        }
+        .logo{
+          display: block;
+          margin: 0 auto;
+          margin-bottom: 10px;
+        }
+  
+      }
+    </style>
+  <script defer="" data-domain="zant.tiiny.site" src="https://a.tiiny.host/js/plausible.js"></script><script type="text/javascript" src="https://tiiny.host/ad-script.js"></script></head>
+  <body>
+  
+    <!-- Header -->
+    <header>
+      <h1 class="title"> <img src="art.png" class="logo">The Zant Project </h1> <!-- Changed to bug icon for ant -->
+      <p class="subtitle mt-1"> Open-Source SDK for easier and optimezed deployment of Nerual Networks on edge devices</p>
+      <section class="button-bar ">
+        <a href="https://github.com/ZIGTinyBook/TheTinyBook" target="_blank" class="button">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+        <a href="https://www.linkedin.com/company/zant" target="_blank" class="button">
+          <i class="fab fa-linkedin"></i> LinkedIn
+        </a>
+        <a href="https://x.com/zant_ai" target="_blank" class="button">
+          <i class="fab fa-twitter"></i> X.com
+        </a>
+        <a href="https://airtable.com/appYbTCd8vgMzJzFL/shrcWtM08l3VhAPM7" class="button">
+          <i class="fas fa-hands-helping"></i> How to Contribute
+        </a>
+        <a href="#faq" class="button">
+          <i class="fas fa-question-circle"></i> FAQ
+        </a>
+      </section>
+      <button id="darkModeToggle" class="dark-toggle">
+        <i class="fas fa-moon"></i>
+      </button>
+    </header>
+  
+    <hr>
+  
+    <!-- Content Sections -->
+    <div class="content-section">
+      <h2 class="title is-4">Project Overview</h2>
+      <p>We are builing an open-source SDK designed to simplify and cost-effectively deploy machine learning models on embedded and edge devices. With Zant, developers wiil be able to easily optimize and deploy models on a wide range of hardware, minimizing the need for complex reimplementation when switching platforms.
+        <br>
+        The first release of Zant will be a static library that takes an ML model as input and produces an optimized, device-specific executable. Built primarily in the Zig programming language, Zant leverages two powerful features of Zig:
+        <br>
+        Cross-Compilation: Zant enables seamless code portability, allowing ML models to run on different device architectures with minimal adjustments. This ensures flexibility and saves development time, especially in resource-constrained environments.
+        <br>
+        C-Compatibility: As C is the standard language for embedded applications, Zant’s compatibility with C allows it to integrate smoothly with essential components like the Hardware Abstraction Layer (HAL), which provides a consistent interface for hardware interactions.
+        <br>
+        With Zant, deploying ML models to embedded and edge devices becomes more efficient, flexible, and accessible.</p>
+    </div>
+  
+  <hr>
+  
+    <div class="content-section">
+      <h2 class="title is-4">Why this matter:</h2>
+      <ol>
+        <li>Many microcontrollers (e.g., ATMEGA, TI Sitara) lack robust deep learning libraries.</li>
+        <li>No open-source solution exists for end-to-end NN optimization and deployment.</li>
+        <li>Inspired by cutting-edge research (e.g., MIT Han Lab), we leverage state-of-the-art optimization techniques.</li>
+        <li>Built for flexibility to adapt to new hardware without codebase changes.</li>
+      </ol>
+    </div>
+  
+    <hr>
+  
+    <div class="content-section">
+      <h2 class="title is-4">Key Features:</h2>
+      <ul>
+        <li><strong>Lightweight &amp; High-Performance:</strong> Small footprint, ideal for constrained environments.</li>
+        <li><strong>Hardware Acceleration:</strong> Supports SIMD, GPU offloading for enhanced efficiency.</li>
+        <li><strong>Efficient Memory Management:</strong> Uses memory pooling and static allocation.</li>
+        <li><strong>Optimized Algorithms:</strong> Includes quantization, model pruning for embedded AI.</li>
+        <li><strong>Cross-Platform:</strong> Compatible with ARM Cortex-M, RISC-V, and more.</li>
+      </ul>
+    </div>
+  
+  
+    <hr>
+  
+    <div class="content-section" id="contribute">
+      <h2 class="title is-4">How to Contribute</h2>
+      <p> We welcome contributors of all experience levels and backgrounds. A strong desire to learn and passion for the project are required.</p>
+      <p>Note that we wish to build a company around the Zant project; we will only hire former contributors to the project.</p>
+      <br>
+      <a href="https://airtable.com/appYbTCd8vgMzJzFL/shrcWtM08l3VhAPM7" class="button is-link is-small">Fill this form to join the project</a>
+  
+    </div>
+  
+    <hr>
+  
+  
+    <!-- FAQ Section -->
+    <div class="content-section" id="faq">
+      <h2 class="title is-4">FAQ</h2>
+      <div class="faq-item">
+        <h3 onclick="toggleFAQ(this)"><i class="fas fa-chevron-down faq-icon"></i> What is the purpose of this project?</h3>
+        <p class="faq-answer">The Zant Project provides efficient machine learning model inference training for embedded systems with constrained resources.</p>
+      </div>
+      <div class="faq-item">
+        <h3 onclick="toggleFAQ(this)"><i class="fas fa-chevron-down faq-icon"></i> What platforms are supported?</h3>
+        <p class="faq-answer">This library is cross-platform, supporting ARM Cortex-M, RISC-V, and others.</p>
+      </div>
+      <div class="faq-item">
+        <h3 onclick="toggleFAQ(this)"><i class="fas fa-chevron-down faq-icon"></i> How can I get started?</h3>
+        <p class="faq-answer">Getting started requires the latest Zig compiler and foundational Zig knowledge.</p>
+      </div>
+    </div>
+  
+      
+  
+    <!-- Dark Mode Script and FAQ Toggle Script -->
+    <script>
+      const toggleButton = document.getElementById('darkModeToggle');
+      toggleButton.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode'); // Toggle dark mode
+        toggleButton.innerHTML = document.body.classList.contains('dark-mode') 
+          ? '<i class="fas fa-sun"></i>' // Show sun icon for light mode
+          : '<i class="fas fa-moon"></i>'; // Show moon icon for dark mode
+      });
+  
+      function toggleFAQ(element) {
+        const answer = element.nextElementSibling;
+        answer.style.display = answer.style.display === 'none' ? 'block' : 'none';
+      }
+    </script>
+  
+  
+  </body></html>
